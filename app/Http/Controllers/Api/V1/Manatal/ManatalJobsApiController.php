@@ -14,7 +14,22 @@ class ManatalJobsApiController extends Controller
      */
     public function index()
     {
-        echo 'here';exit;
+
+    }
+
+    public function fetch(){
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://api.manatal.com/open/v3/jobs/', [
+        'headers' => [
+        'Authorization' => 'Token 1547683c6cc8002fc4a283ff944e2d083d888784',
+        'accept' => 'application/json',
+        ],
+        ]);
+        $res_data =  $response->getBody();
+        $jobsList =  json_decode($res_data);
+        echo '<pre>';
+        print_r($jobsList);
+        exit;
     }
 
     /**
